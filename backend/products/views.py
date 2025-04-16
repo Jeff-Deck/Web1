@@ -4,7 +4,6 @@ from .forms import ProductForm
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
-@login_required
 def home_view(request):
     return render(request, 'products/home.html')
 

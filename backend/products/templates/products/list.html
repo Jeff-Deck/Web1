@@ -1,37 +1,32 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Ferretería - Lista de Productos</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 font-sans">
-    <div class="max-w-4xl mx-auto py-8 px-4">
-        <header class="mb-6">
-            <h1 class="text-3xl font-bold text-gray-800 mb-4">🛠️ Productos en Inventario</h1>
-            <a href="{% url 'product_create' %}" class="inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
-                ➕ Agregar nuevo producto
-            </a>
-        </header>
+{% extends 'products/base.html' %}
+{% block title %}Lista de Productos{% endblock %}
 
-        <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <ul class="divide-y divide-gray-200">
-                {% for product in products %}
-                    <li class="p-4 flex justify-between items-center">
-                        <div>
-                            <p class="text-lg font-semibold text-gray-900">{{ product.name }}</p>
-                            <p class="text-sm text-gray-600">$ {{ product.price }} | Stock: {{ product.stock }}</p>
-                        </div>
-                        <div class="flex gap-2">
-                            <a href="{% url 'product_update' product.id %}" class="text-blue-600 hover:underline">✏️ Editar</a>
-                            <a href="{% url 'product_delete' product.id %}" class="text-red-600 hover:underline">🗑️ Eliminar</a>
-                        </div>
-                    </li>
-                {% empty %}
-                    <li class="p-4 text-gray-500">No hay productos en el inventario.</li>
-                {% endfor %}
-            </ul>
-        </div>
+{% block content %}
+<div class="max-w-4xl mx-auto py-8 px-4">
+    <header class="mb-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">🛠️ Productos en Inventario</h1>
+        <a href="{% url 'product_create' %}" class="inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
+            ➕ Agregar nuevo producto
+        </a>
+    </header>
+
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <ul class="divide-y divide-gray-200">
+            {% for product in products %}
+                <li class="p-4 flex justify-between items-center">
+                    <div>
+                        <p class="text-lg font-semibold text-gray-900">{{ product.name }}</p>
+                        <p class="text-sm text-gray-600">$ {{ product.price }} | Stock: {{ product.stock }}</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <a href="{% url 'product_update' product.id %}" class="text-blue-600 hover:underline">✏️ Editar</a>
+                        <a href="{% url 'product_delete' product.id %}" class="text-red-600 hover:underline">🗑️ Eliminar</a>
+                    </div>
+                </li>
+            {% empty %}
+                <li class="p-4 text-gray-500">No hay productos en el inventario.</li>
+            {% endfor %}
+        </ul>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}

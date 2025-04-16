@@ -1,36 +1,31 @@
+{% extends 'products/base.html' %}
 {% load widget_tweaks %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Iniciar sesión</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 font-sans">
-    <div class="flex items-center justify-center h-screen">
-        <form method="post" class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-            {% csrf_token %}
-            <h2 class="text-2xl font-bold mb-6 text-center">🔐 Iniciar sesión</h2>
+{% block title %}Iniciar Sesión{% endblock %}
 
-            {% if form.errors %}
-                <div class="mb-4 text-red-600 text-sm">
-                    Usuario o contraseña incorrectos.
-                </div>
-            {% endif %}
+{% block content %}
+<div class="flex items-center justify-center h-screen">
+    <form method="post" class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        {% csrf_token %}
+        <h2 class="text-2xl font-bold mb-6 text-center">🔐 Iniciar sesión</h2>
 
-            <div class="mb-4">
-                {{ form.username.label_tag }}
-                {{ form.username|add_class:"w-full px-3 py-2 border rounded-lg" }}
+        {% if form.errors %}
+            <div class="mb-4 text-red-600 text-sm">
+                Usuario o contraseña incorrectos.
             </div>
-            <div class="mb-6">
-                {{ form.password.label_tag }}
-                {{ form.password|add_class:"w-full px-3 py-2 border rounded-lg" }}
-            </div>
+        {% endif %}
 
-            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
-                Ingresar
-            </button>
-        </form>
-    </div>
-</body>
-</html>
+        <div class="mb-4">
+            {{ form.username.label_tag }}
+            {{ form.username|add_class:"w-full px-3 py-2 border rounded-lg" }}
+        </div>
+        <div class="mb-6">
+            {{ form.password.label_tag }}
+            {{ form.password|add_class:"w-full px-3 py-2 border rounded-lg" }}
+        </div>
+
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+            Ingresar
+        </button>
+    </form>
+</div>
+{% endblock %}
